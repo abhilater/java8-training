@@ -3,12 +3,13 @@ package java8.training.codewars;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.IntPredicate;
+import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
-public class KataProblems {
+public class CodewarProblems {
 
     public static Map<Character, Long> characterFrequenceyMap(String text) {
         return text.codePoints()
@@ -35,7 +36,7 @@ public class KataProblems {
         return song.replaceAll("(WUB)+", " ").trim();
     }
 
-    //FindOutlier https://www.codewars.com/kata/find-the-parity-outlier/train/java
+    // FindOutlier https://www.codewars.com/kata/find-the-parity-outlier/train/java
     static int find(int[] integers) {
         IntPredicate isEven = i -> i % 2 == 0;
         boolean even = false;
@@ -45,8 +46,8 @@ public class KataProblems {
             // case 2: first 2 are odd
         else if (!isEven.test(integers[0]) && !isEven.test(integers[1]))
             even = false;
-            // case 3: first is outlier
-        else if (isEven.test(integers[0]) && !isEven.test(integers[1]) && !isEven.test(integers[2]))
+        // case 3: first is outlier
+        if (isEven.test(integers[0]) && !isEven.test(integers[1]) && !isEven.test(integers[2]))
             return integers[0];
         else if (!isEven.test(integers[0]) && isEven.test(integers[1]) && isEven.test(integers[2]))
             return integers[0];
@@ -76,4 +77,57 @@ public class KataProblems {
         return Arrays.stream(integers).parallel() // call parallel to get as much bang for the buck on a "large" array
                 .filter(n -> Math.abs(n) % 2 == mod).findFirst().getAsInt();
     }
+
+    public static boolean validatePin(String pin) {
+        Predicate<String> validLenth = s -> s.length() == 6 || s.length() == 4;
+        return validLenth.test(pin) &&
+                pin.codePoints().mapToObj(c -> (char) c)
+                        .allMatch(Character::isDigit);
+    }
+
+    /**
+     * toCamelCase("the-stealth-warrior"); // returns "theStealthWarrior"
+     * toCamelCase("The_Stealth_Warrior"); // returns "TheStealthWarrior"
+     *
+     * @param s https://www.codewars.com/kata/convert-string-to-camel-case/train/java
+     * @return
+     */
+    static String toCamelCase(String s) {
+        String[] tokens = s.split("[-_]");
+        String first = tokens[0];
+        String collect = Arrays.stream(Arrays.copyOfRange(tokens, 1, tokens.length))
+                .map(str -> str.substring(0, 1).toUpperCase() + str.substring(1))
+                .collect(joining());
+        return first + collect;
+    }
+
+    /**
+     * 5 -> " *\n***\n *\n"
+     *
+     * @param n https://www.codewars.com/kata/give-me-a-diamond/train/java
+     * @return
+     */
+    public static String diamond(int n) {
+        if (n < 0 || n % 2 == 0) return null;
+        StringBuilder sb = new StringBuilder();
+        return IntStream.range(0, n)
+                .mapToObj(i -> createRow(n, i))
+                .collect(joining());
+    }
+
+    // 0 -> 2 - 0 : 2
+    // 1 -> 2 - 1 : 1
+    // 2 -> 2 - 2 : 0
+    // 3 -> 2 - 3 : 1
+    // 4 -> 2 - 4 : 2
+    static String createRow(int n, int i) {
+        String spaceStr = IntStream.range(0, Math.abs((n / 2) - i))
+                .mapToObj(idx -> " ")
+                .collect(joining());
+        String starStr = IntStream.range(0, n - 2 * (Math.abs((n / 2) - i)))
+                .mapToObj(idx -> "*")
+                .collect(joining());
+        return spaceStr + starStr + "\n";
+    }
+
 }
