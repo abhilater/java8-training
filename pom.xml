@@ -18,6 +18,18 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <dependency>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <groupId>com.amazonaws</groupId>
+            <version>1.11.683</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp -->
+        <dependency>
+            <artifactId>okhttp</artifactId>
+            <groupId>com.squareup.okhttp</groupId>
+            <version>2.7.5</version>
+        </dependency>
+
 
     </dependencies>
     <build>
