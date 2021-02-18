@@ -1,0 +1,21 @@
+curl -u "POWERBI_API_KEY:" "https://analytics.helpshift.com/v1/lenote/power-bi?route=analytics/agg/faqs/ticket-deflection&limit=1000&created_since=1&created_until=1504681580000"
+ 
+curl -u "POWERBI_API_KEY:" "https://analytics.helpshift.com/v1/lenote/power-bi?route=analytics/agg/faqs&limit=1000&v=2&created_since=1&created_until=1504681580000"
+ 
+curl -u "POWERBI_API_KEY:" "https://analytics.helpshift.com/v1/lenote/power-bi?route=analytics/raw/faqs&limit=1000"
+ 
+curl -u "POWERBI_API_KEY:" "https://analytics.helpshift.com/v1/lenote/power-bi?route=analytics/raw/sections&limit=1000"
+
+curl -u "POWERBI_API_KEY:" "https://analytics.helpshift.com/v1/lenote/power-bi?route=analytics/raw/issues&limit=1000&v=3&created_since=1&created_until=1504681580000"
+
+curl -u "POWERBI_API_KEY:" "https://analytics.helpshift.com/v1/lenote/power-bi?route=analytics/raw/profiles&limit=1000"
+
+curl -u "POWERBI_API_KEY:" "https://analytics.helpshift.com/v1/lenote/power-bi?route=analytics/agg/agents&limit=1000&v=3&created_since=1&created_until=1507681580000"
+
+
+
+"/analytics/raw/issues"
+"/analytics/raw/profiles"
+"/analytics/agg/agents"
+
+POWERBI_API_KEY
