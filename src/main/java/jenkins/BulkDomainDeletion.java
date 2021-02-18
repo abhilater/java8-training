@@ -18,9 +18,9 @@ public class BulkDomainDeletion {
 
   final static Logger LOG = Logger.getLogger(BulkDomainDeletion.class);
 
-  private static final String JENKINS_URL = "https://igor.p.helpshift.com/job/apollo-phdp";
-  private static final String JENKINS_USER = "abhishek.gupta@helpshift.com";
-  private static final String JENKINS_SECRET_TOKEN = "a0a4316d4261f9bde4ca4369c180da9b";
+  private static final String JENKINS_URL = "secret";
+  private static final String JENKINS_USER = "secret";
+  private static final String JENKINS_SECRET_TOKEN = "secret";
 
   public static void main(String[] args) throws Exception {
 
